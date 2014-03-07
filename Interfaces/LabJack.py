@@ -93,10 +93,8 @@ import u3
 import Math
 import time
 import struct
-import scipy
 import numpy as NP
 from threading import Thread
-from scipy.optimize import bisect
 from u3 import U3
 from Misc import unique
 
