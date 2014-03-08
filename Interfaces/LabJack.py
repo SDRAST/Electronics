@@ -96,7 +96,7 @@ import struct
 import numpy as NP
 from threading import Thread
 from u3 import U3
-from Misc import unique
+from support import unique
 
 U3name = {}
 
