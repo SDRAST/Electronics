@@ -3,7 +3,9 @@
 Monitor and Control  with LabJack
 
 For details see the
-U{LabJack U3 User Manual<http://dsnra.jpl.nasa.gov/software/Python/python-modules/Observatory/Interfaces/LabJack>}
+U{LabJack U3 User Manual
+http://labjack.com/support/u3/users-guide and
+http://dsnra.jpl.nasa.gov/software/Python/python-modules/Observatory/Interfaces/LabJack
 
 LabJack
 =======
@@ -97,6 +99,9 @@ import numpy as NP
 from threading import Thread
 from u3 import U3
 from support import unique
+import logging
+
+module_logger = logging.getLogger(__name__)
 
 U3name = {}
 
@@ -308,11 +313,43 @@ def close_U3s(lj):
 
 class LabJack(U3):
   """
-  U3 subclass with additional attributes and methods
+  U3 subclass with additional attributes and methods.
+
+  Some inherited methods::
+    binaryToCalibratedAnalogTemperature()
+    binaryToCalibratedAnalogVoltage() Bits returned from AIN into voltage.
+    close()
+    configAnalog()
+    configDigital()
+    configIO()
+    configTimerClock()
+    configU3()
+    getAIN()
+    getDIOState()
+    getDIState()        A convenience function to read the state of an FIO.
+    getFeedback()       Sends a commandlist to the U3, and reads the response.
+    getName()
+    getTemperature()    Reads the internal temperature sensor on the U3.
+    loadConfig()        Takes a configuration and updates the U3 to match it.
+    reset()             Causes a soft or hard reset.
+    setDIOState()
+    setDOState()        Set the state of a digital I/O
+    setName()
+    setToFactoryDefaults()
+    toggleLED()         Toggles the state LED on and off.
+    voltageToDACBits()  Takes a voltage, and turns it into the bits
+    watchdog()          read/write the configuration of the watchdog
+
+  Some inherited attributes::
+    name
+    
   """
   def __init__(self,serialno):
     """
     Instantiate a LabJack
+
+    @param serialno : serial number of the LabJack
+    @type  serialno : str
     """
     U3.__init__(self,autoOpen = True, serial = int(serialno))
     self.config = self.configU3()
@@ -325,6 +362,7 @@ class LabJack(U3):
     elif self.serial == 320038583:
       self.configU3(LocalID=2)
     self.localID = self.config['LocalID']
+    self.logger = logging.getLogger(__name__+".LabJack")
 
   def get_AINs(self,prefix):
     """
@@ -363,7 +401,7 @@ class LabJack(U3):
     Get direction bits
     """
     response = self.configU3()
-    print response
+    self.logger.debug("%s", response)
     return response["FIODirection"], \
            response["EIODirection"], \
            response["CIODirection"]
