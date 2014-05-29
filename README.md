@@ -10,6 +10,6 @@ The .dot and .png files created with snakefood show the interdependecies for the
 
 ### Instruments Module
 
-[Instrument module interdependencies](/Instruments.png?raw=True)
+![Instrument module interdependencies](/Instruments.png?raw=True)
 
 
