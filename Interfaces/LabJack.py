@@ -281,9 +281,9 @@ def report_IO_config(config):
   params = unique(par_keys)
   params.sort()
   response = "=============== U3 I/O Configurations ================\n"
-  response += "U3 local ID:         "
+  response += "U3 local ID:        "
   for U3 in U3s:
-    response += ("%4d    " % U3)
+    response += ("%4d     " % U3)
   response += "\n"
   for param in params:
     response += ("%22s " % param)
@@ -294,8 +294,10 @@ def report_IO_config(config):
           response += ("%9d " % value)
         elif type(value) == int:
           response += Math.decimal_to_binary(value,8)+" "
+        elif type(value) == float:
+          response += ("%8.3f " % value)
         else:
-          response += ("%9.3f " % value)
+          response += "         "
       else:
         response += "         "
     response += "\n"
