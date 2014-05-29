@@ -1,6 +1,6 @@
 # M&C for Electronic Instruments
 
-provides low level control and monitor capability for electronicninstruments.
+provides low level control and monitor capability for electronic instruments.
 
 This package is for general-purpose instruments and interfaces.  Instruments and interfaces which are specific to DSN Radio Astronomy are found in the MonitorControl repository.
 
