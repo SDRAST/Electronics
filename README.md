@@ -6,10 +6,12 @@ This package is for general-purpose instruments and interfaces.  Instruments and
 
 ## Dependencies
 
-The .dot and .png files created with snakefood show the interdependecies for the Instruments and Interfaces packages at the time of creation.  Don not count on them being up to date.
+The .dot and .png files were created with snakefood in the site-packages Observatory package before transfer to DSN-Sci-packages.  They show the interdependecies for the Instruments and Interfaces packages at the time of creation.  Do not count on them being up to date.
 
 ### Instruments Module
 
 ![Instrument module interdependencies](/Instruments.png?raw=True)
 
+### Interfaces Module
 
+![Interfaces module interdependencies](/Interfaces.png?raw=True)
