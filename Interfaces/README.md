@@ -6,8 +6,8 @@ USB, GPIB, etc. are obvious protocols.  After some thought, I decided that LabJa
 and VXI later.
 
 Each bus has its own sub-directory and repository.  For now:
-* GPIB
-* IOtech
-* LabJack
-* SNMP
-* USB
+* GPIB      \(repository Electronics_Interfaces_GPIB\)
+* IOtech    \(repository Electronics_Interfaces_IOtech\)
+* LabJack   \(repository Electronics_Interfaces_LabJack\)
+* SNMP      \(repository Electronics_Interfaces_SNMP\)
+* USB       \(repository Electronics_Interfaces_USB\)
