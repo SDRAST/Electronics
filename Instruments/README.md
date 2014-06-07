@@ -5,4 +5,5 @@ This package has modules for operating commercial lab equipment.  Locally built 
 Instruments are grouped by manufacturer.  For now they are:
 * Agilent
 * Valon
+
 Each of these has its own repository.
