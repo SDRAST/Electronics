@@ -6,4 +6,8 @@ Instruments are grouped by manufacturer.  For now they are:
 * Agilent \(repository Electronics_Instruments_Agilent\)
 * Valon   \(repository Electronics_Interfaces_Valon\)
 
-Each of these has its own repository.
+### Warning
+
+Sub-directory Electronics.Instruments is part of the Electronics project.
+'git commit' inside this directory does not commit any changes in its
+sub-directories.

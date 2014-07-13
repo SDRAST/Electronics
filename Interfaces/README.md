@@ -11,3 +11,9 @@ Each bus has its own sub-directory and repository.  For now:
 * LabJack   \(repository Electronics_Interfaces_LabJack\)
 * SNMP      \(repository Electronics_Interfaces_SNMP\)
 * USB       \(repository Electronics_Interfaces_USB\)
+
+### Warning
+
+Sub-directory Electronics.Interfaces is part of the Electronics project.
+'git commit' inside this directory does not commit any changes in its
+sub-directories.

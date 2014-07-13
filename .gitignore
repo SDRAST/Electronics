@@ -10,3 +10,11 @@
 
 # No compiled Python
 *.pyc
+
+Instruments/Agilent/
+Instruments/Valon/
+Interfaces/GPIB/
+Interfaces/IOtech/
+Interfaces/LabJack/
+Interfaces/SNMP/
+Interfaces/USB/

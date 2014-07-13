@@ -23,6 +23,11 @@ such as GPIB and USB.  For now:
 * Interfaces_LabJack
 * Interfaces_USB
 
+### Warning
+
+Committing changes in this directory does not commit any changes in these
+sub-directories.  Get used to doing commits while in them.
+
 ## Dependencies
 
 The .dot and .png files were created with snakefood in the site-packages Observatory package before transfer to DSN-Sci-packages.  They show the interdependecies for the Instruments and Interfaces packages at the time of creation.  Do not count on them being up to date.

@@ -1,0 +1,7 @@
+/usr/local/lib/python2.7/DSN-Sci-packages/Electronics/Interfaces/IOtech origin https://github.jpl.nasa.gov/kuiper/Electronics_Interfaces_IOtech.git
+/usr/local/lib/python2.7/DSN-Sci-packages/Electronics/Interfaces/USB origin https://github.jpl.nasa.gov/kuiper/Electronics_Interfaces_USB.git
+/usr/local/lib/python2.7/DSN-Sci-packages/Electronics/Interfaces/GPIB origin https://github.jpl.nasa.gov/kuiper/Electronics_Interfaces_GPIB.git
+/usr/local/lib/python2.7/DSN-Sci-packages/Electronics/Interfaces/LabJack origin https://github.jpl.nasa.gov/kuiper/Electronics_Interfaces_LabJack.git
+/usr/local/lib/python2.7/DSN-Sci-packages/Electronics/Interfaces/SNMP origin https://github.jpl.nasa.gov/kuiper/Electronics_Interfaces_SNMP.git
+/usr/local/lib/python2.7/DSN-Sci-packages/Electronics/Instruments/Valon jpl https://github.jpl.nasa.gov/kuiper/Electronics_Instruments_Valon.git
+/usr/local/lib/python2.7/DSN-Sci-packages/Electronics/Instruments/Agilent jpl https://github.jpl.nasa.gov/kuiper/Electronics_Instruments_Agilent.git
