@@ -2,7 +2,9 @@
 
 provides low level control and monitor capability for electronic instruments.
 
-This package is for general-purpose instruments and interfaces.  Instruments and interfaces which are specific to DSN Radio Astronomy are found in the MonitorControl repository.
+This package is for general-purpose instruments and interfaces.  Instruments and interfaces which are specific to DSN Radio Astronomy are found in the [MonitorControl](https://github.jpl.nasa.gov/pages/RadioAstronomy/MonitorControl) repository.
+
+View the [source code documentation](https://github.jpl.nasa.gov/pages/RadioAstronomy/Electronics) for the entire tree.
 
 ## Categories
 
