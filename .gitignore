@@ -12,6 +12,7 @@
 *.pyc
 
 Instruments/Agilent/
+Instruments/JFW50MS/
 Instruments/Valon/
 Interfaces/GPIB/
 Interfaces/IOtech/
