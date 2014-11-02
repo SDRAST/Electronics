@@ -6,6 +6,9 @@ grouped by manufacturer:
 * Instruments.Agilent (repository Electronics_Instruments_Agilent)
 * Instruments.Valon   (repository Electronics_Interfaces_Valon)
 """
+import logging
+
+module_logger = logging.getLogger(__name__)
 
 class Synthesizer(object):
   """
