@@ -8,6 +8,10 @@ grouped by manufacturer::
 
 This modules defines generic devices
 """
+import threading
+import logging
+
+module_logger = logging.getLogger(__name__)
 
 class PowerMeter(object):
   """
@@ -20,9 +24,10 @@ class PowerMeter(object):
   with the lowest number typically being for a single reading.
   """
   
-  def __init__(self,num_averages={0:1}):
+  def __init__(self):
     """
     """
+    self.logger = logging.getLogger(module_logger.name+".PowerMeter")
     # Typical defaults attributes; replace in sub-class
     self.f_min =   0 # GHz
     self.f_max =  27 # GHz
@@ -42,8 +47,10 @@ class PowerMeter(object):
       self._attributes_.index(attr)
     except ValueError:
       self._attributes_.append(attr)
+
+  #  These methods are expected to be replaced by the sub-class
   
-  def read(self):
+  def power(self):
     """
     """
     pass
@@ -57,7 +64,7 @@ class PowerMeter(object):
   def get_trigmode(self):
     """
     """
-    pass
+    return self.trigmode
 
   def set_averaging(self, avg_code=0):
     """
@@ -72,17 +79,12 @@ class PowerMeter(object):
   def set_units(self, units="dBm"):
     """
     """
-    pass
+    self.units = "dBm"
 
   def get_units(self):
     """
     """
-    pass
-  
-=======
-import logging
-
-module_logger = logging.getLogger(__name__)
+    return self.units
 
 class Synthesizer(object):
   """
@@ -95,6 +97,7 @@ class Synthesizer(object):
   sure that there is only one, so that there is no conflict in the device use.
   """
   def __init__(self):
+    self.logger = logging.getLogger(module_logger.name+".Synthesizer")
     # These are the minimum attributes of a Synthesizer
     self.__get_tasks__ = {"frequency":  None,
                           "rf_level":   None,
@@ -114,4 +117,70 @@ class Synthesizer(object):
   def get_p(self,param):
     raise NotImplementedError(
       "This method is not implemented by %s", self.__class__.__name__)
->>>>>>> 27548ac0065d1e560f0ecffd50956438dd2a38c5
+
+class DeviceReadThread(threading.Thread):
+  """
+  One thread in a multi-threaded, multiple device instrument
+
+  This creates a thread which can be started, terminated, suspended, put to
+  sleep and resumed. For more discussion see
+  http://mail.python.org/pipermail/python-list/2003-December/239268.html
+  """
+
+  def __init__(self, parent, device):
+    """
+    Create a DeviceReadThread object
+
+    @param parent : the object invoking the thread
+    @type  parent : some class instance for which an action is defined
+
+    @param device : some instance of a controlable device
+    @type  device : object
+    """
+    mylogger = logging.getLogger(module_logger.name+".DeviceReadThread")
+    threading.Thread.__init__(self, target=parent.action)
+    self.logger = mylogger
+    self.parent = parent
+    self.end_flag=False
+    self.thread_suspend=False
+    self.sleep_time=0.0
+    self.thread_sleep=False
+    self.device = device
+    self.name = device.name
+    self.logger.debug(" started %s", self.name)
+
+  def run(self):
+    """
+    """
+    while not self.end_flag:
+      # Optional sleep
+      if self.thread_sleep:
+        time.sleep(self._sleeptime)
+      # Optional suspend
+      while self.thread_suspend:
+        time.sleep(1.0)
+      self.parent.action(self.device)
+    self.logger.info(" %s done", self.name)
+
+  def terminate(self):
+    """
+    Thread termination routine
+    """
+    self.logger.info(" %s ends", self.name)
+    self.end_flag = True
+
+  def set_sleep(self, sleeptime):
+    """
+    """
+    self.thread_sleep = True
+    self._sleeptime = sleeptime
+
+  def suspend_thread(self):
+    """
+    """
+    self.thread_suspend=True
+
+  def resume_thread(self):
+    """
+    """
+    self.thread_suspend=False
