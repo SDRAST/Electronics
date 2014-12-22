@@ -1,0 +1,3 @@
+[submodule "Instruments/Radipower"]
+	path = Instruments/Radipower
+	url = https://github.jpl.nasa.gov/RadioAstronomy/Electronics_Instruments_Radipower.git

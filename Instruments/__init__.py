@@ -147,7 +147,7 @@ class DeviceReadThread(threading.Thread):
     self.thread_sleep=False
     self.device = device
     self.name = device.name
-    self.logger.debug(" started %s", self.name)
+    self.logger.debug(" initialized thread %s", self.name)
 
   def run(self):
     """
@@ -160,13 +160,13 @@ class DeviceReadThread(threading.Thread):
       while self.thread_suspend:
         time.sleep(1.0)
       self.parent.action(self.device)
-    self.logger.info(" %s done", self.name)
+    self.logger.info(" thread %s done", self.name)
 
   def terminate(self):
     """
     Thread termination routine
     """
-    self.logger.info(" %s ends", self.name)
+    self.logger.info(" thread %s ends", self.name)
     self.end_flag = True
 
   def set_sleep(self, sleeptime):
