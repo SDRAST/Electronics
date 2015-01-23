@@ -8,3 +8,5 @@ Currently supported protocols are:
 * Interfaces.SNMP     (repository Electronics_Interfaces_SNMP)
 * Interfaces.USB      (repository Electronics_Interfaces_USB)
 """
+import logging
+module_logger = logging.getLogger(__name__)
