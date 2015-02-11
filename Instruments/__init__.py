@@ -13,6 +13,7 @@ import logging
 
 module_logger = logging.getLogger(__name__)
 
+
 class PowerMeter(object):
   """
   Class with features common to most power meters.
@@ -86,6 +87,7 @@ class PowerMeter(object):
     """
     return self.units
 
+    
 class Synthesizer(object):
   """
   Synthesizer prototype
@@ -117,6 +119,62 @@ class Synthesizer(object):
   def get_p(self,param):
     raise NotImplementedError(
       "This method is not implemented by %s", self.__class__.__name__)
+
+      
+class VoltageSource(object):
+  """
+  Superclass for all voltage source classes
+
+  @ivar volts : output voltage
+  @type volts : float
+  """
+  def __init__(self, name, parent=None):
+    """
+    Initializes a generic, no hardware voltage source to define attributes.
+
+    This can be used to test software without hardware.
+    """
+    self.parent = parent
+    self.name = name
+    self.volts = None
+    self.logger = logging.getLogger(module_logger.name+".VoltageSource")
+
+  def getVoltage(self):
+    """
+    Stub to be replaced by subclass hardware interface
+    """
+    return self.volts
+
+  def setVoltage(self, volts):
+    """
+    Stub to be replaced by subclass hardware interface
+    """
+    self.volts = volts
+    return self.get_voltage()
+
+
+class Attenuator(object):
+  """
+  Generic attenuator defines basic methods and attributes.
+
+  Can be used for software testing without hardware.
+  """
+  def __init__(self, name, parent=None):
+    """
+    """
+    self.name = name
+    self.parent = parent
+    self.atten = None
+
+  def get_atten(self):
+    """
+    """
+    return self.atten
+
+  def set_atten(self, atten):
+    self.atten = atten
+    return self.atten
+
 
 class DeviceReadThread(threading.Thread):
   """
