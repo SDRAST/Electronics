@@ -49,6 +49,18 @@ class PowerMeter(object):
     except ValueError:
       self._attributes_.append(attr)
 
+  def __str__(self):
+    return self.base()+' "'+self.name+'"'
+
+  def __repr__(self):
+    return self.base()+' "'+self.name+'"'
+
+  def base(self):
+    """
+    String representing the class instance type
+    """
+    return str(type(self)).split()[-1].strip('>').strip("'").split('.')[-1]
+
   #  These methods are expected to be replaced by the sub-class
   
   def power(self):
@@ -120,6 +132,18 @@ class Synthesizer(object):
     raise NotImplementedError(
       "This method is not implemented by %s", self.__class__.__name__)
 
+  def __str__(self):
+    return self.base()+' "'+self.name+'"'
+
+  def __repr__(self):
+    return self.base()+' "'+self.name+'"'
+
+  def base(self):
+    """
+    String representing the class instance type
+    """
+    return str(type(self)).split()[-1].strip('>').strip("'").split('.')[-1]
+
       
 class VoltageSource(object):
   """
@@ -152,6 +176,18 @@ class VoltageSource(object):
     self.volts = volts
     return self.get_voltage()
 
+  def __str__(self):
+    return self.base()+' "'+self.name+'"'
+
+  def __repr__(self):
+    return self.base()+' "'+self.name+'"'
+
+  def base(self):
+    """
+    String representing the class instance type
+    """
+    return str(type(self)).split()[-1].strip('>').strip("'").split('.')[-1]
+
 
 class Attenuator(object):
   """
@@ -159,7 +195,7 @@ class Attenuator(object):
 
   Can be used for software testing without hardware.
   """
-  def __init__(self, name, parent=None):
+  def __init__(self, parent=None, name=None):
     """
     """
     self.name = name
@@ -174,6 +210,18 @@ class Attenuator(object):
   def set_atten(self, atten):
     self.atten = atten
     return self.atten
+
+  def __str__(self):
+    return self._base_()+' "'+self.name+'"'
+
+  def __repr__(self):
+    return self._base_()+' "'+self.name+'"'
+
+  def _base_(self):
+    """
+    String representing the class instance type
+    """
+    return str(type(self)).split()[-1].strip('>').strip("'").split('.')[-1]
 
 
 class DeviceReadThread(threading.Thread):
