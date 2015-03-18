@@ -46,6 +46,7 @@ class Radiometer(object):
     self.update_interval = 1./rate # sec
     self.logger.debug("__init__: interval is %f", self.update_interval)
     signal.signal(signal.SIGALRM, self.signalHandler)
+    self.logger.debug("__init__: signal handler assigned")
     self.pm_reader = {}
     self.queue = {}
     for key in PMlist:
@@ -55,10 +56,10 @@ class Radiometer(object):
       self.pm_reader[key].daemon = True
     self.logger.debug(" initialized")
 
-  def signalHandler(self):
+  def signalHandler(self, *args):
     """
     """
-    self.logger.debug("signalHandler: called at %s", datetime.datetime.now())
+    self.logger.debug("signalHandler: called with %s", args)
   
   def start(self):
     """
@@ -82,11 +83,12 @@ class Radiometer(object):
     #self.sig.signal.wait()
     self.logger.debug("action: called for %s", pm.name)
     while True:
-      self.logger.debug("action: waiting for signal")
-      signal.pause()
+      #self.logger.debug("action: waiting for signal")
+      #signal.pause()
       reading = pm.power()
       t = time.time()
       self.queue[pm.name].put((t, reading))
+      time.sleep(1) # remove when pause() is restored
     
   def close(self):
     """
