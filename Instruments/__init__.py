@@ -258,6 +258,7 @@ class DeviceReadThread(threading.Thread):
   def run(self):
     """
     """
+    self.logger.debug("run: thread %s started", self.name)
     while not self.end_flag:
       # Optional sleep
       if self.thread_sleep:
