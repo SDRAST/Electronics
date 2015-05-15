@@ -17,7 +17,6 @@ from support import sync_second
 
 data_path = "/tmp/"
 
-
 class Radiometer(object):
   """
   class for multiple power meters reading in synchrony
@@ -53,6 +52,8 @@ class Radiometer(object):
       self.pm_reader[key] = DeviceReadThread(self, PM[key])
       self.logger.debug("__init__: reader and queue %s created", key)
       self.pm_reader[key].daemon = True
+      if self.pm_reader[key].isAlive():
+        self.pm_reader[key].join(1)
       self.reader_done[key] = threading.Event()
       self.reader_done[key].clear()
       self.logger.debug("__init__: 'reader done' event %s created and cleared",
@@ -68,11 +69,17 @@ class Radiometer(object):
       self.logger.debug("signalHandler: called at %s", str(datetime.datetime.now()))
       try:
         self.take_data.set() # OK to take data
+        self.logger.debug("signalHandler: take_data is set")
         for key in self.reader_done.keys():
-          while not self.reader_done[key]:
+          self.logger.debug("signalHandler: %d reader_done is %s",
+                            key, self.reader_done[key].is_set())
+          while not self.reader_done[key].is_set():
             self.logger.debug("signalHandler: waiting for %s to be done", key)
+            time.sleep(0.001)
+        self.logger.debug("signalHandler: all readers done; setting 'take_data'")
         self.take_data.clear()
       except KeyboardInterrupt:
+        self.logger.debug("signalHandler: interrupted")
         self.close()
       self.logger.debug("signalHandler: done")
   
@@ -107,7 +114,7 @@ class Radiometer(object):
     lineout = str(dt)+"\t"+str(reading)+'\n'
     self.datafile[pm.name].write(lineout)
     self.datafile[pm.name].flush()
-    self.logger.debug("action: %s put %f on queue at %s", pm.name, reading, dt)
+    self.logger.debug("action: %s put %6.2f on queue at %s", pm.name, reading, dt)
     self.reader_done[pm.name].set()
     
   def close(self):
@@ -116,9 +123,11 @@ class Radiometer(object):
     """
     signal.setitimer(signal.ITIMER_REAL, 0)
     self.logger.debug("close: stopping")
+    self.take_data = False
     for key in self.pm_reader.keys():
       self.pm_reader[key].terminate()
-      self.pm_reader[key].join()
-    self.sig.terminate()
-    self.sig.join()
-    self.rtc.close()
+      self.logger.debug("close: reader %d terminated", key)
+      #self.pm_reader[key].join()
+    #self.sig.terminate()
+    #self.sig.join()
+    #self.rtc.close()
