@@ -10,11 +10,12 @@ This modules defines generic devices
 """
 import threading
 import logging
+from MonitorControl import MCobject
 
 module_logger = logging.getLogger(__name__)
 
 
-class PowerMeter(object):
+class PowerMeter(MCobject):
   """
   Class with features common to most power meters.
 
@@ -100,7 +101,7 @@ class PowerMeter(object):
     return self.units
 
     
-class Synthesizer(object):
+class Synthesizer(MCobject):
   """
   Synthesizer prototype
 
@@ -132,20 +133,8 @@ class Synthesizer(object):
     raise NotImplementedError(
       "This method is not implemented by %s", self.__class__.__name__)
 
-  def __str__(self):
-    return self.base()+' "'+self.name+'"'
 
-  def __repr__(self):
-    return self.base()+' "'+self.name+'"'
-
-  def base(self):
-    """
-    String representing the class instance type
-    """
-    return str(type(self)).split()[-1].strip('>').strip("'").split('.')[-1]
-
-      
-class VoltageSource(object):
+class VoltageSource(MCobject):
   """
   Superclass for all voltage source classes
 
@@ -176,18 +165,6 @@ class VoltageSource(object):
     self.volts = volts
     return self.get_voltage()
 
-  def __str__(self):
-    return self.base()+' "'+self.name+'"'
-
-  def __repr__(self):
-    return self.base()+' "'+self.name+'"'
-
-  def base(self):
-    """
-    String representing the class instance type
-    """
-    return str(type(self)).split()[-1].strip('>').strip("'").split('.')[-1]
-
 
 class Attenuator(object):
   """
@@ -210,18 +187,6 @@ class Attenuator(object):
   def set_atten(self, atten):
     self.atten = atten
     return self.atten
-
-  def __str__(self):
-    return self._base_()+' "'+self.name+'"'
-
-  def __repr__(self):
-    return self._base_()+' "'+self.name+'"'
-
-  def _base_(self):
-    """
-    String representing the class instance type
-    """
-    return str(type(self)).split()[-1].strip('>').strip("'").split('.')[-1]
 
 
 class DeviceReadThread(threading.Thread):
