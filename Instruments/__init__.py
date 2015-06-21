@@ -166,7 +166,7 @@ class VoltageSource(MCobject):
     return self.get_voltage()
 
 
-class Attenuator(object):
+class Attenuator(MCobject):
   """
   Generic attenuator defines basic methods and attributes.
 
