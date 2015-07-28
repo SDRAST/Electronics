@@ -50,10 +50,10 @@ class PowerMeter(object):
       self._attributes_.append(attr)
 
   def __str__(self):
-    return self.base()+' "'+self.name+'"'
+    return self.base()+' "'+str(self.name)+'"'
 
   def __repr__(self):
-    return self.base()+' "'+self.name+'"'
+    return self.base()+' "'+str(self.name)+'"'
 
   def base(self):
     """
