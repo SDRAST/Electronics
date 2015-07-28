@@ -11,6 +11,7 @@
 # No compiled Python
 *.pyc
 
+# subrepos
 Instruments/Agilent/
 Instruments/JFW50MS/
 Instruments/Valon/
