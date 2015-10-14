@@ -43,6 +43,7 @@ class Radiometer(object):
     #self.queue = {}
     self.datafile = {}
     self.reader_done = {}
+    self.last_reading = {}
     for key in PMlist:
       PM[key].name = key
       #self.queue[key] = Queue.Queue()
@@ -109,6 +110,7 @@ class Radiometer(object):
     except KeyboardInterrupt:
       self.close()
     t = time.time()
+    self.last_reading[pm] = (t, reading)
     #self.queue[pm.name].put((t, reading))
     dt = datetime.datetime.fromtimestamp(t)
     lineout = str(dt)+"\t"+str(reading)+'\n'
@@ -123,7 +125,7 @@ class Radiometer(object):
     """
     signal.setitimer(signal.ITIMER_REAL, 0)
     self.logger.debug("close: stopping")
-    self.take_data = False
+    self.take_data.clear()
     for key in self.pm_reader.keys():
       self.pm_reader[key].terminate()
       self.logger.debug("close: reader %d terminated", key)
