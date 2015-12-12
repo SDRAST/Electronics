@@ -5,6 +5,10 @@
 # No backup copies
 *~
 
+# No logs or Pyro
+*.log
+Pyro*
+
 # No .svn files
 .svn
 
