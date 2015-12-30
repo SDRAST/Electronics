@@ -67,22 +67,26 @@ class Radiometer(object):
     if self.take_data.is_set():
       self.logger.warning("signalHandler is busy and skipped")
     else:
-      self.logger.debug("signalHandler: called at %s", str(datetime.datetime.now()))
+      self.logger.info("signalHandler: called at %s", str(datetime.datetime.now()))
       try:
         self.take_data.set() # OK to take data
-        self.logger.debug("signalHandler: take_data is set")
-        for key in self.reader_done.keys():
-          self.logger.debug("signalHandler: %d reader_done is %s",
-                            key, self.reader_done[key].is_set())
-          while not self.reader_done[key].is_set():
-            self.logger.debug("signalHandler: waiting for %s to be done", key)
+        self.logger.info("signalHandler: take_data is set")
+        reader_list = self.reader_done.keys()
+        while len(reader_list):
+          for key in reader_list:
             time.sleep(0.001)
-        self.logger.debug("signalHandler: all readers done; setting 'take_data'")
+            if self.reader_done[key].is_set():
+              self.logger.info("signalHandler: reader %d is done", key)
+              reader_list.remove(key)
+            else:
+              self.logger.info("signalHandler: reader %d is not done", key)
+        self.logger.info("signalHandler: all readers done; setting 'take_data'")
         self.take_data.clear()
       except KeyboardInterrupt:
-        self.logger.debug("signalHandler: interrupted")
+        self.logger.warning("signalHandler: interrupted")
         self.close()
-      self.logger.debug("signalHandler: done")
+      except Exception, details:
+        self.logger.warning("signalHandler: %s", details)
   
   def start(self):
     """
@@ -118,6 +122,13 @@ class Radiometer(object):
     self.datafile[pm.name].flush()
     self.logger.debug("action: %s put %6.2f on queue at %s", pm.name, reading, dt)
     self.reader_done[pm.name].set()
+  
+  def get_readings(self):
+    """
+    """
+    while self.take_data.is_set():
+      time.sleep(0.001)
+    return self.last_reading
     
   def close(self):
     """
