@@ -80,13 +80,33 @@ class PowerMeter(MCobject):
     """
     return self.trigmode
 
-  def set_averaging(self, avg_code=0):
+  def set_averaging(self, num, no_smear=False, min_rms=False, most=False):
     """
+    Selects the averaging option for power meter readings
+    
+    Sets the number of samples to average.  If no keyword argument is given,
+    the averaging option is the one which averages the number of samples which
+    is closest to num.
+    
+    @param num : number of samples to average; calculate if 0
+    @type  num : int
+    
+    @param no_smear : if True, num is the largest < reading_time/sampling_time
+    @type  no_smear : bool
+    
+    @param min_rms : if True, num is the smallest > reading_time/sampling_time
+    @type  min_rms : bool
+    
+    @param most: largest number of samples available
+    @type  most: bool
+    
+    @return num_averaged
     """
-    pass
+    return 0
 
   def get_averaging(self):
     """
+    Returns the number samples are that are averaged together
     """
     pass
 

@@ -6,7 +6,6 @@ import datetime
 import logging
 import os
 import threading
-#import Queue
 import signal
 from math import log
 
@@ -15,29 +14,39 @@ module_logger = logging.getLogger(__name__)
 from Electronics.Instruments import DeviceReadThread
 from support import sync_second
 
-data_path = "/tmp/"
+data_path = "/tmp/" # for testing only
 
 class Radiometer(object):
   """
-  class for multiple power meters reading in synchrony
+  class for reading multiple power meters synchronous
+  
+  Public Attributes::
+    integration     - 2*update_interval for Nyquist sampling
+    logger          - logging.Logger object
+    pm_reader       - DeviceReadThread object
+    reader_done     - threading.Event object, set when reading has been taken
+    reader_started  - threading.Event object, set when a reading is started
+    take_data       - threading.Event object to signal readers to take reading
+    update_interval - inverse of reading rate
   """  
-  def __init__(self, PM, rate=2):
+  def __init__(self, PM, rate=0):
     """
     Create a synchronized multi-channel power meter
     
-    
+    If the radiometer is started without a rate being given then the default is
+    once per minute.
 
     @param PM : dict of power meters
     @type  PM : dict of PowerMeter sub-class objects
     
-    @param rate : number of samples/sec
+    @param rate : number of readings/sec
     @type  rate : float
     """
     self.logger = logging.getLogger(module_logger.name+".Radiometer")
     # set the sampling rate and integration time to Nyquist
     self.update_interval = 1./rate # sec
     self.logger.debug("__init__: interval is %f", self.update_interval)
-    self.integration = 2*self.update_interval
+    self.integration = 2*self.update_interval # Nyquist sampling
     # create a timer and timer event handler
     signal.signal(signal.SIGALRM, self.signalHandler)
     self.logger.debug("__init__: signal handler assigned")
@@ -46,18 +55,11 @@ class Radiometer(object):
     self.logger.debug("__init__: 'take_data' event created and cleared")
     # set power meter averaging and assign reader threads
     self.pm_reader = {}
-    #self.queue = {}
-    self.datafile = {}
     self.reader_started = {}
     self.reader_done = {}
     self.last_reading = {}
     for key in PM.keys():
       PM[key].name = key
-      PM[key].set_averaging(self.integration*100)
-      #self.queue[key] = Queue.Queue()
-      self.datafile[key] = open(data_path
-                               +datetime.datetime.now().strftime(
-                                               "PM%Y%j-%H%M%S-"+str(key)), "w")
       self.pm_reader[key] = DeviceReadThread(self, PM[key])
       self.logger.debug("__init__: reader and queue %s created", key)
       self.pm_reader[key].daemon = True
@@ -70,12 +72,21 @@ class Radiometer(object):
       self.logger.debug("__init__: 'reader done' event %s created and cleared",
                         key)
     self.logger.debug(" initialized")
+    
 
   def signalHandler(self, *args):
     """
+    Actions to take when the timer goes off::
+      1. Ignore signal if take_data is set
+      2. Set take_data
+      3. Waits until all readers have started.
+      4. Clears take_data.
+      5. Waits until all readers have finished.
+    It also traps a keyboard interrupt and closes the radiometer
     """
     def check_reader_status(flag, name):
       """
+      Checks remaining readers to see if they have finished
       """
       reader_list = flag.keys()
       while len(reader_list):
@@ -122,7 +133,13 @@ class Radiometer(object):
     """
     Action performed by thread for power meter
 
-    This action is invoked by the DeviceReadThread object
+    Actions invoked by the DeviceReadThread object::
+      1. Wait until take_data is set.
+      2. Sets reader_started event.
+      3. Takes a power meter reading.
+      4. Clears reader_started event.
+      5. Saves reading in last_reading.
+      6. Sets reader_done.
 
     @param pm : power meter
     @type  pm : any instance of a PowerMeter class
@@ -139,16 +156,11 @@ class Radiometer(object):
       self.close()
     t = time.time()
     self.last_reading[pm] = (t, reading)
-    #self.queue[pm.name].put((t, reading))
-    dt = datetime.datetime.fromtimestamp(t)
-    lineout = str(dt)+"\t"+str(reading)+'\n'
-    self.datafile[pm.name].write(lineout)
-    self.datafile[pm.name].flush()
-    self.logger.debug("action: %s put %6.2f in file", pm.name, reading)
     self.reader_done[pm.name].set()
   
   def get_readings(self):
     """
+    Returns results of ongoing or just completed reading.
     """
     while self.take_data.is_set():
       time.sleep(0.001)
