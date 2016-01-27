@@ -21,7 +21,7 @@ class Radiometer(object):
   """
   class for multiple power meters reading in synchrony
   """  
-  def __init__(self, PM, rate=2):
+  def __init__(self, PM, rate=0.2):
     """
     Create a synchronized multi-channel power meter
     
@@ -96,7 +96,7 @@ class Radiometer(object):
         self.logger.info("signalHandler: setting take_data")
         self.take_data.set() # OK to take data
         # wait until all the readers have started
-        if check_reader_status(self.reader_started, "reader_started"):
+        if check_reader_status(self.reader_started, "reader_started is set"):
           self.take_data.clear()
         self.logger.info("signalHandler: take_data is cleared")
         # wait until all the readers are done
