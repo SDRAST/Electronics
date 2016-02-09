@@ -10,12 +10,12 @@ This modules defines generic devices
 """
 import threading
 import logging
-from MonitorControl import MCobject
+from support import NamedClass
 
 module_logger = logging.getLogger(__name__)
 
 
-class PowerMeter(MCobject):
+class PowerMeter(NamedClass):
   """
   Class with features common to most power meters.
 
@@ -26,9 +26,10 @@ class PowerMeter(MCobject):
   with the lowest number typically being for a single reading.
   """
   
-  def __init__(self):
+  def __init__(self, name):
     """
     """
+    self.name = name
     self.logger = logging.getLogger(module_logger.name+".PowerMeter")
     # Typical defaults attributes; replace in sub-class
     self.f_min =   0 # GHz
@@ -121,7 +122,7 @@ class PowerMeter(MCobject):
     return self.units
 
     
-class Synthesizer(MCobject):
+class Synthesizer(NamedClass):
   """
   Synthesizer prototype
 
@@ -154,7 +155,7 @@ class Synthesizer(MCobject):
       "This method is not implemented by %s", self.__class__.__name__)
 
 
-class VoltageSource(MCobject):
+class VoltageSource(NamedClass):
   """
   Superclass for all voltage source classes
 
@@ -186,7 +187,7 @@ class VoltageSource(MCobject):
     return self.get_voltage()
 
 
-class Attenuator(MCobject):
+class Attenuator(NamedClass):
   """
   Generic attenuator defines basic methods and attributes.
 
