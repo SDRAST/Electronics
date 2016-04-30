@@ -19,6 +19,7 @@ Pyro*
 Instruments/Agilent/
 Instruments/JFW50MS/
 Instruments/Valon/
+Instruments/Radipower/
 Interfaces/GPIB/
 Interfaces/IOtech/
 Interfaces/LabJack/
