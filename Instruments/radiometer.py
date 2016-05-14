@@ -19,7 +19,20 @@ data_path = "/usr/local/logs/Radiometer/"
 
 class Radiometer(NamedClass):
   """
-  class for reading multiple power meters synchronous
+  Class for reading multiple power meters synchronous
+  
+  The class initiates a system signal with a handler imaginatively called
+  'signalHandler()'. An event called 'take_data' which is initially cleared.
+  It then starts a reader thread for every power meter.  Each reader has two
+  associated events, 'reader_started' and 'reader_done'. Both are initially
+  False. A method 'action()' is provided to be invoked by the reader threads.
+  When the Radiometer is started, a system timer is intialized with a handler
+  called 'update_interval()'. When the timer fires, 'signalHandler()'
+  does nothing if 'take_data' is set.  If it is not, then it waits until all
+  the readers have completed their 'action()'. It stays in this wait loop
+  using time.sleep(). When all the readers are done, it formats an output
+  line with the mean time of all the reading times and the readings and writes
+  the line to the datafile, flushing the buffer afterwards.
   
   Public Attributes::
     integration     - 2*update_interval for Nyquist sampling
