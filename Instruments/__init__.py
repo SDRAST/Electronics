@@ -9,14 +9,12 @@ grouped by manufacturer::
 This modules defines generic devices
 """
 import logging
-
-from MonitorControl import DeviceReadThread # for compatility with older software
-from MonitorControl import MCobject
+from support import NamedClass
 
 module_logger = logging.getLogger(__name__)
 
 
-class PowerMeter(MCobject):
+class PowerMeter(NamedClass):
   """
   Class with features common to most power meters.
 
@@ -27,9 +25,10 @@ class PowerMeter(MCobject):
   with the lowest number typically being for a single reading.
   """
   
-  def __init__(self):
+  def __init__(self, name):
     """
     """
+    self.name = name
     self.logger = logging.getLogger(module_logger.name+".PowerMeter")
     # Typical defaults attributes; replace in sub-class
     self.f_min =   0 # GHz
@@ -81,13 +80,33 @@ class PowerMeter(MCobject):
     """
     return self.trigmode
 
-  def set_averaging(self, avg_code=0):
+  def set_averaging(self, num, no_smear=False, min_rms=False, most=False):
     """
+    Selects the averaging option for power meter readings
+    
+    Sets the number of samples to average.  If no keyword argument is given,
+    the averaging option is the one which averages the number of samples which
+    is closest to num.
+    
+    @param num : number of samples to average; calculate if 0
+    @type  num : int
+    
+    @param no_smear : if True, num is the largest < reading_time/sampling_time
+    @type  no_smear : bool
+    
+    @param min_rms : if True, num is the smallest > reading_time/sampling_time
+    @type  min_rms : bool
+    
+    @param most: largest number of samples available
+    @type  most: bool
+    
+    @return num_averaged
     """
-    pass
+    return 0
 
   def get_averaging(self):
     """
+    Returns the number samples are that are averaged together
     """
     pass
 
@@ -102,7 +121,7 @@ class PowerMeter(MCobject):
     return self.units
 
     
-class Synthesizer(MCobject):
+class Synthesizer(NamedClass):
   """
   Synthesizer prototype
 
@@ -135,7 +154,7 @@ class Synthesizer(MCobject):
       "This method is not implemented by %s", self.__class__.__name__)
 
 
-class VoltageSource(MCobject):
+class VoltageSource(NamedClass):
   """
   Superclass for all voltage source classes
 
@@ -167,7 +186,7 @@ class VoltageSource(MCobject):
     return self.get_voltage()
 
 
-class Attenuator(MCobject):
+class Attenuator(NamedClass):
   """
   Generic attenuator defines basic methods and attributes.
 
