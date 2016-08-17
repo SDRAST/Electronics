@@ -46,7 +46,6 @@ class Radiometer(NamedClass):
     update_interval - inverse of reading rate
   """  
   def __init__(self, PM, rate=1./60):
-
     """
     Create a synchronized multi-channel power meter
     
@@ -81,8 +80,9 @@ class Radiometer(NamedClass):
       self.pm_reader[key] = DeviceReadThread(self, PM[key])
       self.logger.debug("__init__: reader and queue %s created", key)
       self.pm_reader[key].daemon = True
-      if self.pm_reader[key].isAlive():
-        self.pm_reader[key].join(1)
+      # See ~/Python/Thread/daemon.py before uncommenting this code
+      #if self.pm_reader[key].isAlive():
+      #self.pm_reader[key].join(1) # this blocks the main thread for one sec
       self.reader_started[key] = threading.Event()
       self.reader_started[key].clear()
       self.reader_done[key] = threading.Event()

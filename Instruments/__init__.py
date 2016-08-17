@@ -8,7 +8,6 @@ grouped by manufacturer::
 
 This modules defines generic devices
 """
-import threading
 import logging
 from support import NamedClass
 
@@ -210,70 +209,3 @@ class Attenuator(NamedClass):
     return self.atten
 
 
-class DeviceReadThread(threading.Thread):
-  """
-  One thread in a multi-threaded, multiple device instrument
-
-  This creates a thread which can be started, terminated, suspended, put to
-  sleep and resumed. For more discussion see
-  http://mail.python.org/pipermail/python-list/2003-December/239268.html
-  """
-
-  def __init__(self, parent, device):
-    """
-    Create a DeviceReadThread object
-
-    @param parent : the object invoking the thread
-    @type  parent : some class instance for which an action is defined
-
-    @param device : some instance of a controlable device
-    @type  device : object
-    """
-    mylogger = logging.getLogger(module_logger.name+".DeviceReadThread")
-    threading.Thread.__init__(self, target=parent.action)
-    self.logger = mylogger
-    self.parent = parent
-    self.end_flag=False
-    self.thread_suspend=False
-    self.sleep_time=0.0
-    self.thread_sleep=False
-    self.device = device
-    self.name = device.name
-    self.logger.debug(" initialized thread %s", self.name)
-
-  def run(self):
-    """
-    """
-    self.logger.debug("run: thread %s started", self.name)
-    while not self.end_flag:
-      # Optional sleep
-      if self.thread_sleep:
-        time.sleep(self._sleeptime)
-      # Optional suspend
-      while self.thread_suspend:
-        time.sleep(1.0)
-      self.parent.action(self.device)
-    self.logger.info(" thread %s done", self.name)
-
-  def terminate(self):
-    """
-    Thread termination routine
-    """
-    self.logger.info(" thread %s ends", self.name)
-    self.end_flag = True
-
-  def set_sleep(self, sleeptime):
-    """
-    """
-    self.thread_sleep = True
-    self._sleeptime = sleeptime
-
-  def suspend_thread(self):
-    """
-    """
-    self.thread_suspend=True
-
-  def resume_thread(self):
-    """
-    """
-    self.thread_suspend=False
