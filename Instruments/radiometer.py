@@ -45,11 +45,8 @@ class Radiometer(NamedClass):
     take_data       - threading.Event object to signal readers to take reading
     update_interval - inverse of reading rate
   """  
-<<<<<<< HEAD
   def __init__(self, PM, rate=1./60):
-=======
-  def __init__(self, PM, rate=0.2):
->>>>>>> 61bfd18fb1a95e5341a37eff09a0597e663a7bd5
+
     """
     Create a synchronized multi-channel power meter
     
