@@ -8,14 +8,13 @@ grouped by manufacturer::
 
 This modules defines generic devices
 """
-import threading
 import logging
-from MonitorControl import MCobject
+from support import NamedClass
 
 module_logger = logging.getLogger(__name__)
 
 
-class PowerMeter(MCobject):
+class PowerMeter(NamedClass):
   """
   Class with features common to most power meters.
 
@@ -26,9 +25,10 @@ class PowerMeter(MCobject):
   with the lowest number typically being for a single reading.
   """
   
-  def __init__(self):
+  def __init__(self, name):
     """
     """
+    self.name = name
     self.logger = logging.getLogger(module_logger.name+".PowerMeter")
     # Typical defaults attributes; replace in sub-class
     self.f_min =   0 # GHz
@@ -80,13 +80,33 @@ class PowerMeter(MCobject):
     """
     return self.trigmode
 
-  def set_averaging(self, avg_code=0):
+  def set_averaging(self, num, no_smear=False, min_rms=False, most=False):
     """
+    Selects the averaging option for power meter readings
+    
+    Sets the number of samples to average.  If no keyword argument is given,
+    the averaging option is the one which averages the number of samples which
+    is closest to num.
+    
+    @param num : number of samples to average; calculate if 0
+    @type  num : int
+    
+    @param no_smear : if True, num is the largest < reading_time/sampling_time
+    @type  no_smear : bool
+    
+    @param min_rms : if True, num is the smallest > reading_time/sampling_time
+    @type  min_rms : bool
+    
+    @param most: largest number of samples available
+    @type  most: bool
+    
+    @return num_averaged
     """
-    pass
+    return 0
 
   def get_averaging(self):
     """
+    Returns the number samples are that are averaged together
     """
     pass
 
@@ -101,7 +121,7 @@ class PowerMeter(MCobject):
     return self.units
 
     
-class Synthesizer(MCobject):
+class Synthesizer(NamedClass):
   """
   Synthesizer prototype
 
@@ -134,7 +154,7 @@ class Synthesizer(MCobject):
       "This method is not implemented by %s", self.__class__.__name__)
 
 
-class VoltageSource(MCobject):
+class VoltageSource(NamedClass):
   """
   Superclass for all voltage source classes
 
@@ -166,7 +186,7 @@ class VoltageSource(MCobject):
     return self.get_voltage()
 
 
-class Attenuator(MCobject):
+class Attenuator(NamedClass):
   """
   Generic attenuator defines basic methods and attributes.
 
@@ -189,70 +209,3 @@ class Attenuator(MCobject):
     return self.atten
 
 
-class DeviceReadThread(threading.Thread):
-  """
-  One thread in a multi-threaded, multiple device instrument
-
-  This creates a thread which can be started, terminated, suspended, put to
-  sleep and resumed. For more discussion see
-  http://mail.python.org/pipermail/python-list/2003-December/239268.html
-  """
-
-  def __init__(self, parent, device):
-    """
-    Create a DeviceReadThread object
-
-    @param parent : the object invoking the thread
-    @type  parent : some class instance for which an action is defined
-
-    @param device : some instance of a controlable device
-    @type  device : object
-    """
-    mylogger = logging.getLogger(module_logger.name+".DeviceReadThread")
-    threading.Thread.__init__(self, target=parent.action)
-    self.logger = mylogger
-    self.parent = parent
-    self.end_flag=False
-    self.thread_suspend=False
-    self.sleep_time=0.0
-    self.thread_sleep=False
-    self.device = device
-    self.name = device.name
-    self.logger.debug(" initialized thread %s", self.name)
-
-  def run(self):
-    """
-    """
-    self.logger.debug("run: thread %s started", self.name)
-    while not self.end_flag:
-      # Optional sleep
-      if self.thread_sleep:
-        time.sleep(self._sleeptime)
-      # Optional suspend
-      while self.thread_suspend:
-        time.sleep(1.0)
-      self.parent.action(self.device)
-    self.logger.info(" thread %s done", self.name)
-
-  def terminate(self):
-    """
-    Thread termination routine
-    """
-    self.logger.info(" thread %s ends", self.name)
-    self.end_flag = True
-
-  def set_sleep(self, sleeptime):
-    """
-    """
-    self.thread_sleep = True
-    self._sleeptime = sleeptime
-
-  def suspend_thread(self):
-    """
-    """
-    self.thread_suspend=True
-
-  def resume_thread(self):
-    """
-    """
-    self.thread_suspend=False
