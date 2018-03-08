@@ -13,9 +13,10 @@ from math import log10
 module_logger = logging.getLogger(__name__)
 
 from Electronics.Instruments import DeviceReadThread
+from local_dirs import log_dir
 from support import NamedClass, sync_second
 
-data_path = "/usr/local/logs/Radiometer/"
+data_path = log_dir+"/Radiometer/"
 
 class Radiometer(NamedClass):
   """
