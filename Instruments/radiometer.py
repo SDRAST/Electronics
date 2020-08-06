@@ -74,7 +74,7 @@ class Radiometer(NamedClass):
     self.reader_started = {}
     self.reader_done = {}
     self.last_reading = {}
-    for key in PM.keys():
+    for key in list(PM.keys()):
       PM[key].name = key
       # initial reading to wake up Radipower
       self.last_reading[key] = PM[key].power() 
@@ -104,7 +104,7 @@ class Radiometer(NamedClass):
     """
     Starts the signaller and the threads
     """
-    for key in self.pm_reader.keys():
+    for key in list(self.pm_reader.keys()):
       self.pm_reader[key].start()
     sync_second()
     signal.setitimer(signal.ITIMER_REAL, self.update_interval, self.update_interval)
@@ -124,7 +124,7 @@ class Radiometer(NamedClass):
       """
       Checks remaining readers to see if they have finished
       """
-      reader_list = flag.keys()
+      reader_list = list(flag.keys())
       while len(reader_list):
         try:
           for key in reader_list:
@@ -165,15 +165,15 @@ class Radiometer(NamedClass):
       except KeyboardInterrupt:
         self.logger.warning("signalHandler: interrupted")
         self.close()
-      except Exception, details:
+      except Exception as details:
         self.logger.warning("signalHandler: %s", details)
       # output data array
-      ar = N.array(self.last_reading.values())
+      ar = N.array(list(self.last_reading.values()))
       t = ar[:,0].mean()
       powers = tuple(ar[:,1])
       try:
         outstr = format_time(t) + (8*" %6.2f" % powers)
-      except TypeError, details:
+      except TypeError as details:
         self.logger.warning("signalHandler: conversion failed: %s", details)
         outstr = format_time(t) + ("%s" % powers)
       try:
@@ -229,7 +229,7 @@ class Radiometer(NamedClass):
     signal.setitimer(signal.ITIMER_REAL, 0)
     self.logger.debug("close: stopping")
     self.take_data.clear()
-    for key in self.pm_reader.keys():
+    for key in list(self.pm_reader.keys()):
       self.pm_reader[key].terminate()
       self.logger.debug("close: reader %d terminated", key)
     self.run = False
