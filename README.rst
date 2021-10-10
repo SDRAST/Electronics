@@ -3,17 +3,25 @@ Electronics
 
 provides low level control and monitor capability for electronic instruments.
 
-This package is for general-purpose instruments and interfaces.  Instruments and interfaces which are specific to DSN Radio Astronomy are found in the [MonitorControl](https://github.jpl.nasa.gov/pages/RadioAstronomy/MonitorControl) repository.
+This package is for basic electronic circuits, and general-purpose instruments 
+and interfaces.  The repository is at <https://github.com/SDRAST/Electronics>.
 
-View the source code documentation]<https://github.jpl.nasa.gov/pages/RadioAstronomy/Electronics> for the entire tree.
+Python 2 versions of code for instruments and interfaces which are specific to 
+DSN Radio Astronomy are found in the MonitorControl]
+<https://github.jpl.nasa.gov/pages/RadioAstronomy/MonitorControl> repository.
 
 Categories
 ----------
 
+Circuits
+........
+
+Basic filters, impedance matching, plotting frequency responses.
+
 Instruments
 ...........
 
-This sub-directory holds the modules for specific devices like power meters
+Specific devices like power meters
 and signal generators.  They are grouped by manufacturers in
 sub-subdirectories, each of which is a repository.  For now:
 * Instruments_Agilent
