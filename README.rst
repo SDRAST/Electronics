@@ -1,5 +1,5 @@
-M&C for Electronic Instruments
-==============================
+Electronics
+===========
 
 provides low level control and monitor capability for electronic instruments.
 
