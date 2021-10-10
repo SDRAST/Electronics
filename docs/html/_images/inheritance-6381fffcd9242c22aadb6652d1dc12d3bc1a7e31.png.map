@@ -1,0 +1,7 @@
+<map id="inheritancebe645097eb" name="inheritancebe645097eb">
+<area shape="rect" id="node1" href="api/Electronics.Instruments.Attenuator.html#Electronics.Instruments.Attenuator" target="_top" title="Generic attenuator defines basic methods and attributes." alt="" coords="169,5,260,31"/>
+<area shape="rect" id="node2" title="A base class enhanced with methods for reporting self." alt="" coords="5,80,109,105"/>
+<area shape="rect" id="node3" href="api/Electronics.Instruments.PowerMeter.html#Electronics.Instruments.PowerMeter" target="_top" title="Class with features common to most power meters." alt="" coords="165,55,264,80"/>
+<area shape="rect" id="node4" href="api/Electronics.Instruments.Synthesizer.html#Electronics.Instruments.Synthesizer" target="_top" title="Synthesizer prototype" alt="" coords="165,104,264,129"/>
+<area shape="rect" id="node5" href="api/Electronics.Instruments.VoltageSource.html#Electronics.Instruments.VoltageSource" target="_top" title="Superclass for all voltage source classes" alt="" coords="157,153,272,179"/>
+</map>

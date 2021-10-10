@@ -100,7 +100,7 @@ def load_circles(gamma):
     result["r"] = {"circle": compute_circle(+1, gamma)}
   return result
   
-def matching_network(ZL, f, Z0=50, plot=False):
+def matching_network(ZL, f, Z0=50):
   """
   Solves for L-circuit matching networks using the Smith chart
   

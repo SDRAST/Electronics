@@ -3,6 +3,7 @@ Support for commercial lab equipment
 
 This module has laboratory instrument prototypes.  The specific classes are
 grouped by manufacturer::
+
  * Instruments.Agilent (repository Electronics_Instruments_Agilent)
  * Instruments.Valon   (repository Electronics_Interfaces_Valon)
 

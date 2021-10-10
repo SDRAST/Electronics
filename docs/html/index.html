@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Single Dish Radio Astronomy Software Tools &#8212; Physics 0.9 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="component_text" href="api/Electronics.circuits.component_text.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/Electronics.circuits.component_text.html" title="component_text"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Physics 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Single Dish Radio Astronomy Software Tools</a><ul>
+<li><a class="reference internal" href="#module-Electronics">Electronics Package</a></li>
+<li><a class="reference internal" href="#module-Electronics.circuits">Electronics.circuits Package</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Electronics.Instruments">Electronics.Instruments Package</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#class-inheritance-diagram">Class Inheritance Diagram</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-Electronics.Interfaces">Electronics.Interfaces Package</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api/Electronics.circuits.component_text.html"
+                        title="next chapter">component_text</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="single-dish-radio-astronomy-software-tools">
+<h1>Single Dish Radio Astronomy Software Tools<a class="headerlink" href="#single-dish-radio-astronomy-software-tools" title="Permalink to this headline">¶</a></h1>
+<p>For an overview of SDRAST and the current status please visit <a class="reference external" href="https://sdrast.github.io/">https://sdrast.github.io/</a>.</p>
+<div class="section" id="module-Electronics">
+<span id="electronics-package"></span><h2>Electronics Package<a class="headerlink" href="#module-Electronics" title="Permalink to this headline">¶</a></h2>
+<p>Support for commercial laboratory instruments</p>
+<p>Electronics.Instruments is for actual instruments grouped by manufacturer.
+Electronics.Interfaces is for communication protocols</p>
+</div>
+<div class="section" id="module-Electronics.circuits">
+<span id="electronics-circuits-package"></span><h2>Electronics.circuits Package<a class="headerlink" href="#module-Electronics.circuits" title="Permalink to this headline">¶</a></h2>
+<p>support for circuit modeling</p>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Electronics.circuits.component_text.html#Electronics.circuits.component_text" title="Electronics.circuits.component_text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">component_text</span></code></a>(component)</p></td>
+<td><p>returns a text string for the component</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">floor</span></code></p></td>
+<td><p>Return the floor of x as an Integral.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">log10</span></code></p></td>
+<td><p>Return the base 10 logarithm of x.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="module-Electronics.Instruments">
+<span id="electronics-instruments-package"></span><h2>Electronics.Instruments Package<a class="headerlink" href="#module-Electronics.Instruments" title="Permalink to this headline">¶</a></h2>
+<p>Support for commercial lab equipment</p>
+<p>This module has laboratory instrument prototypes.  The specific classes are
+grouped by manufacturer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Instruments</span><span class="o">.</span><span class="n">Agilent</span> <span class="p">(</span><span class="n">repository</span> <span class="n">Electronics_Instruments_Agilent</span><span class="p">)</span>
+<span class="o">*</span> <span class="n">Instruments</span><span class="o">.</span><span class="n">Valon</span>   <span class="p">(</span><span class="n">repository</span> <span class="n">Electronics_Interfaces_Valon</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This modules defines generic devices</p>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Electronics.Instruments.Attenuator.html#Electronics.Instruments.Attenuator" title="Electronics.Instruments.Attenuator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Attenuator</span></code></a>([parent, name])</p></td>
+<td><p>Generic attenuator defines basic methods and attributes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NamedClass</span></code>(name)</p></td>
+<td><p>A base class enhanced with methods for reporting self.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Electronics.Instruments.PowerMeter.html#Electronics.Instruments.PowerMeter" title="Electronics.Instruments.PowerMeter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PowerMeter</span></code></a>(name)</p></td>
+<td><p>Class with features common to most power meters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/Electronics.Instruments.Synthesizer.html#Electronics.Instruments.Synthesizer" title="Electronics.Instruments.Synthesizer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Synthesizer</span></code></a>()</p></td>
+<td><p>Synthesizer prototype</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/Electronics.Instruments.VoltageSource.html#Electronics.Instruments.VoltageSource" title="Electronics.Instruments.VoltageSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VoltageSource</span></code></a>(name[, parent])</p></td>
+<td><p>Superclass for all voltage source classes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="class-inheritance-diagram">
+<h3>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Permalink to this headline">¶</a></h3>
+<div class="graphviz"><img src="_images/inheritance-6381fffcd9242c22aadb6652d1dc12d3bc1a7e31.png" alt="Inheritance diagram of Electronics.Instruments.Attenuator, Electronics.Instruments.PowerMeter, Electronics.Instruments.Synthesizer, Electronics.Instruments.VoltageSource" usemap="#inheritancebe645097eb" class="inheritance graphviz" /></div>
+<map id="inheritancebe645097eb" name="inheritancebe645097eb">
+<area shape="rect" id="node1" href="api/Electronics.Instruments.Attenuator.html#Electronics.Instruments.Attenuator" target="_top" title="Generic attenuator defines basic methods and attributes." alt="" coords="169,5,260,31"/>
+<area shape="rect" id="node3" href="api/Electronics.Instruments.PowerMeter.html#Electronics.Instruments.PowerMeter" target="_top" title="Class with features common to most power meters." alt="" coords="165,55,264,80"/>
+<area shape="rect" id="node4" href="api/Electronics.Instruments.Synthesizer.html#Electronics.Instruments.Synthesizer" target="_top" title="Synthesizer prototype" alt="" coords="165,104,264,129"/>
+<area shape="rect" id="node5" href="api/Electronics.Instruments.VoltageSource.html#Electronics.Instruments.VoltageSource" target="_top" title="Superclass for all voltage source classes" alt="" coords="157,153,272,179"/>
+</map><p>The sub-directrories of <code class="docutils literal notranslate"><span class="pre">Instruments</span></code> still need to be converted to Python 3,
+which I cannot do until I have access to instruments for testing.</p>
+</div>
+</div>
+<div class="section" id="module-Electronics.Interfaces">
+<span id="electronics-interfaces-package"></span><h2>Electronics.Interfaces Package<a class="headerlink" href="#module-Electronics.Interfaces" title="Permalink to this headline">¶</a></h2>
+<p>Support for lab instrument communication protocols</p>
+<p>Currently supported protocols are:
+* Interfaces.GPIB     (repository Electronics_Interfaces_GPIB)
+* Interfaces.IOtech   (repository Electronics_Interfaces_IOtech)
+* Interfaces.LabJack  (repository Electronics_Interfaces_LabJack)
+* Interfaces.SNMP     (repository Electronics_Interfaces_SNMP)
+* Interfaces.USB      (repository Electronics_Interfaces_USB)</p>
+<p>The sub-directrories of <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> still need to be converted to Python 3,
+which I cannot do until I have access to instruments for testing.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/Electronics.circuits.component_text.html" title="component_text"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Physics 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, T.B.H. Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.0.
+    </div>
+  </body>
+</html>

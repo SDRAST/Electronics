@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>PowerMeter &#8212; Physics 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Synthesizer" href="Electronics.Instruments.Synthesizer.html" />
+    <link rel="prev" title="Attenuator" href="Electronics.Instruments.Attenuator.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Electronics.Instruments.Synthesizer.html" title="Synthesizer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Electronics.Instruments.Attenuator.html" title="Attenuator"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Physics 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Electronics.Instruments.Attenuator.html"
+                        title="previous chapter">Attenuator</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Electronics.Instruments.Synthesizer.html"
+                        title="next chapter">Synthesizer</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/Electronics.Instruments.PowerMeter.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="powermeter">
+<h1>PowerMeter<a class="headerlink" href="#powermeter" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Electronics.Instruments.PowerMeter">
+<em class="property">class </em><code class="sig-prename descclassname">Electronics.Instruments.</code><code class="sig-name descname">PowerMeter</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#Electronics.Instruments.PowerMeter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">support.NamedClass</span></code></p>
+<p>Class with features common to most power meters.</p>
+<dl class="simple">
+<dt>Public attributes::</dt><dd><p>filter -</p>
+</dd>
+</dl>
+<p>The ‘filter’ setting defines the number of samples that are averaged together
+with the lowest number typically being for a single reading.</p>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Electronics.Instruments.PowerMeter.base" title="Electronics.Instruments.PowerMeter.base"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base</span></code></a>()</p></td>
+<td><p>String representing the class instance type</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Electronics.Instruments.PowerMeter.get_averaging" title="Electronics.Instruments.PowerMeter.get_averaging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_averaging</span></code></a>()</p></td>
+<td><p>Returns the number samples are that are averaged together</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Electronics.Instruments.PowerMeter.get_trigmode" title="Electronics.Instruments.PowerMeter.get_trigmode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_trigmode</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Electronics.Instruments.PowerMeter.get_units" title="Electronics.Instruments.PowerMeter.get_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_units</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Electronics.Instruments.PowerMeter.power" title="Electronics.Instruments.PowerMeter.power"><code class="xref py py-obj docutils literal notranslate"><span class="pre">power</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Electronics.Instruments.PowerMeter.set_averaging" title="Electronics.Instruments.PowerMeter.set_averaging"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_averaging</span></code></a>(num[, no_smear, min_rms, most])</p></td>
+<td><p>Selects the averaging option for power meter readings</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Electronics.Instruments.PowerMeter.set_trigmode" title="Electronics.Instruments.PowerMeter.set_trigmode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_trigmode</span></code></a>([trigcode])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Electronics.Instruments.PowerMeter.set_units" title="Electronics.Instruments.PowerMeter.set_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_units</span></code></a>([units])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="Electronics.Instruments.PowerMeter.base">
+<code class="sig-name descname">base</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Electronics.Instruments.PowerMeter.base" title="Permalink to this definition">¶</a></dt>
+<dd><p>String representing the class instance type</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Electronics.Instruments.PowerMeter.get_averaging">
+<code class="sig-name descname">get_averaging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Electronics.Instruments.PowerMeter.get_averaging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number samples are that are averaged together</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Electronics.Instruments.PowerMeter.get_trigmode">
+<code class="sig-name descname">get_trigmode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Electronics.Instruments.PowerMeter.get_trigmode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Electronics.Instruments.PowerMeter.get_units">
+<code class="sig-name descname">get_units</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Electronics.Instruments.PowerMeter.get_units" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Electronics.Instruments.PowerMeter.power">
+<code class="sig-name descname">power</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Electronics.Instruments.PowerMeter.power" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Electronics.Instruments.PowerMeter.set_averaging">
+<code class="sig-name descname">set_averaging</code><span class="sig-paren">(</span><em class="sig-param">num</em>, <em class="sig-param">no_smear=False</em>, <em class="sig-param">min_rms=False</em>, <em class="sig-param">most=False</em><span class="sig-paren">)</span><a class="headerlink" href="#Electronics.Instruments.PowerMeter.set_averaging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the averaging option for power meter readings</p>
+<p>Sets the number of samples to average.  If no keyword argument is given,
+the averaging option is the one which averages the number of samples which
+is closest to num.</p>
+<p>:param num : number of samples to average; calculate if 0
+:type  num : int</p>
+<p>:param no_smear : if True, num is the largest &lt; reading_time/sampling_time
+:type  no_smear : bool</p>
+<p>:param min_rms : if True, num is the smallest &gt; reading_time/sampling_time
+:type  min_rms : bool</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>most</strong> (<em>bool</em>) – largest number of samples available</p>
+</dd>
+</dl>
+<p>:return num_averaged</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Electronics.Instruments.PowerMeter.set_trigmode">
+<code class="sig-name descname">set_trigmode</code><span class="sig-paren">(</span><em class="sig-param">trigcode='one-shot'</em><span class="sig-paren">)</span><a class="headerlink" href="#Electronics.Instruments.PowerMeter.set_trigmode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Electronics.Instruments.PowerMeter.set_units">
+<code class="sig-name descname">set_units</code><span class="sig-paren">(</span><em class="sig-param">units='dBm'</em><span class="sig-paren">)</span><a class="headerlink" href="#Electronics.Instruments.PowerMeter.set_units" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Electronics.Instruments.Synthesizer.html" title="Synthesizer"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Electronics.Instruments.Attenuator.html" title="Attenuator"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Physics 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, T.B.H. Kuiper.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.0.
+    </div>
+  </body>
+</html>
